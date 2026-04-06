@@ -1,0 +1,38 @@
+{
+  "name": "games-js",
+  "version": "1.0.0",
+  "description": "several different gamse",
+  "main": "bin/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint .",
+    "lint-fix": "npx eslint --fix .",
+    "install": "npm ci"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/babachooga/games.js.git"
+  },
+  "keywords": [
+    "games",
+    "js",
+    "npm",
+    "json"
+  ],
+  "bin": "",
+  "author": "Bron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/babachooga/games.js/issues"
+  },
+  "homepage": "https://github.com/babachooga/games.js#readme",
+  "devDependencies": {
+    "@eslint/create-config": "^1.11.0",
+    "@eslint/js": "^10.0.1",
+    "@eslint/json": "^1.2.0",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "eslint": "^10.2.0",
+    "globals": "^17.4.0"
+  }
+}
