@@ -46,6 +46,11 @@ const oneStep = () => {
     if ((newHead.x > width || newHead.x < 0) || (newHead.y > height || newHead.y < 0)) {
         return console.log('You lost');
     }
+    for (const { x, y } of snake) {
+        if (newHead.x === x && newHead.y === y) {
+            return console.log('You lost');
+        }
+    }
     if ((newHead.x === apple.x && newHead.y === apple.y)) {
         snake.unshift(newHead);
         apple = { x: randomNumber(), y: randomNumber() };
