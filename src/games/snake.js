@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { randomNumber } from '../index.js'
 import readline from 'node:readline'
 readline.emitKeypressEvents(process.stdin)
