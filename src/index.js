@@ -1,3 +1,3 @@
-export const randomNumber = () => {
-  return Math.floor(Math.random() * 10)
+export const randomNumber = (range = 10) => {
+  return Math.floor(Math.random() * range)
 }

@@ -8,4 +8,4 @@ lint-fix:
 	npm run lint-fix
 #install developer dependecies
 install:
-	npm run install
+	npm ci

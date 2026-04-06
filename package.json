@@ -7,8 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint .",
-    "lint-fix": "npx eslint --fix .",
-    "install": "npm ci"
+    "lint-fix": "npx eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -21,7 +20,8 @@
     "json"
   ],
   "bin": {
-    "snake": "bin/snake.js"
+    "snake": "bin/snake.js",
+    "race": "bin/race.js"
   },
   "author": "Bron",
   "license": "ISC",
@@ -32,7 +32,6 @@
   "devDependencies": {
     "@eslint/create-config": "^1.11.0",
     "@eslint/js": "^10.0.1",
-    "@eslint/json": "^1.2.0",
     "@stylistic/eslint-plugin": "^5.10.0",
     "eslint": "^10.2.0",
     "globals": "^17.4.0"
