@@ -20,7 +20,9 @@
     "npm",
     "json"
   ],
-  "bin": "",
+  "bin": {
+    "snake": "bin/snake.js"
+  },
   "author": "Bron",
   "license": "ISC",
   "bugs": {
