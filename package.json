@@ -20,8 +20,8 @@
     "json"
   ],
   "bin": {
-    "snake": "bin/snake.js",
-    "race": "bin/race.js"
+    "race": "bin/race.js",
+    "snake": "bin/snake.js"
   },
   "author": "Bron",
   "license": "ISC",
@@ -35,5 +35,8 @@
     "@stylistic/eslint-plugin": "^5.10.0",
     "eslint": "^10.2.0",
     "globals": "^17.4.0"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2"
   }
 }
