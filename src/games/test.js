@@ -1,6 +1,7 @@
 import readline from 'node:readline'
 import { randomNumber, chars } from '../index.js'
 import chalk from 'chalk'
+import { cp } from 'node:fs'
 
 readline.emitKeypressEvents(process.stdin)
 if (process.stdin.isTTY) {
@@ -23,8 +24,10 @@ const snake = [
   { x: 3, y: 1 },
 ]
 
-let resizeArea = { x: randomNumber(width), y: randomNumber(height) }
-let apple = { x: randomNumber(width), y: randomNumber(height) }
+const collectables = {
+  apple: generateThing(snake),
+  resize: generateThing(snake),
+}
 
 // Snake next move direction, using it in the makeAStep funtion.
 let direction = { x: 1, y: 0 }
@@ -53,30 +56,26 @@ const makeAStep = () => {
     x: snake.at(-1).x + direction.x,
     y: snake.at(-1).y + direction.y,
   }
-
+  const [field] = fieldGenerator(width, height, '.')
   havePlayerBitedHimself(snake, step)
+  checkIfPlayerInTheArea(field, step)
+  showCollecteables(field,collectables)
 
-  if (step.x === apple.x && step.y === apple.y) {
+  if(collectables.apple.x === step.x && collectables.apple.y === step.y){
     snake.push(step)
-    apple = generateThing(snake)
+    collectables.apple = generateThing(snake)
   }
-  else if (step.x === resizeArea.x && step.y === resizeArea.y) {
-    resizeArea = generateThing(snake)
+  else if(collectables.resize.x === step.x && collectables.resize.y === step.y){
     width += 1
     height += 1
+    collectables.resize = generateThing(snake)
     snake.push(step)
     snake.shift()
   }
-  else {
+  else{
     snake.push(step)
     snake.shift()
   }
-
-  const [field] = fieldGenerator(width, height, '.')
-  field[resizeArea.y][resizeArea.x] = chalk.blue('⇄')
-  field[apple.y][apple.x] = chalk.red('@')
-
-  checkIfPlayerInTheArea(field, step)
   const resultedField = generateSnakeOnField(field, snake)
   console.log(resultedField.map(array => array.join(' ')).join('\n'))
 }
@@ -143,3 +142,22 @@ setInterval(makeAStep, 400)
 export default () => {
   return makeAStep()
 }
+
+// const collectable = {
+//   apple: { x: randomNumber(width), y: randomNumber(height) },
+// }
+
+function showCollecteables(field,collectables){
+  const things = {
+    apple: chalk.red('@'),
+    resize: chalk.cyan('⇆')
+  }
+  const entries = Object.entries(collectables)
+  for(const [name,coordinates] of entries){
+    field[coordinates.y][coordinates.x] = things[name]
+  }
+  return field
+}
+
+
+
