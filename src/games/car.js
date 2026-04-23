@@ -49,7 +49,7 @@ function showPlayer(field, player) {
 }
 
 function isPlayerDead(player, field) {
-  const alive = field[player.y][player.x] === 0
+  const alive = field[player.y][player.x] === chalk.green(0)
   return alive ? true : false
 }
 
