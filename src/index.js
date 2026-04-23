@@ -10,3 +10,21 @@ export const randomChars = () => {
   ]
   return chars[randomNumber(chars.length)]
 }
+
+export function fieldGenerator(width, heigth, background) {
+  const field = []
+  for (let i = 0; i < heigth; i++) {
+    field.push(Array(width).fill(background))
+  }
+  return [field, width, heigth]
+}
+
+export function checkIfPlayerInTheArea(field, step) {
+  const { x, y } = step
+  if (field[y] === undefined || field[y][x] === undefined) {
+    console.log(
+      'Looks like you got out of playing area!\nThe game`ll be restarted',
+    )
+    return process.exit()
+  }
+}

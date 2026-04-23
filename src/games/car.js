@@ -75,12 +75,6 @@ process.stdin.on('keypress', (_, key) => {
     case 'right':
       direction = { x: 1, y: 0 }
       break
-    case 'up':
-      direction = { x: 0, y: -1 }
-      break
-    case 'down':
-      direction = { x: 0, y: 1 }
-      break
     case 'space':
       direction = { x: 0, y: 0 }
       break
@@ -88,5 +82,5 @@ process.stdin.on('keypress', (_, key) => {
 })
 
 export default () => {
-  return setInterval(driving, 640)
+  return setInterval(driving, 400)
 }
