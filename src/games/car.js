@@ -1,67 +1,63 @@
-import { randomNumber } from '../index.js'
-
+import chalk from 'chalk'
+import { fieldGenerator, checkIfPlayerInTheArea } from '../index.js'
 import readline from 'node:readline'
+
 readline.emitKeypressEvents(process.stdin)
 if (process.stdin.isTTY) {
   process.stdin.setRawMode(true)
 }
 
-// FIELD GENERATING FUNCTION
-const width = 5
-const height = 9
+const [field, width, height] = fieldGenerator(6, 10, ' ')
 
-const getField = () => {
-  const field = []
-  for (let i = 0; i < height; i++) {
-    const newRow = []
-    for (let j = 0; j < width; j++) {
-      newRow.push(' ')
+const middle = Math.floor(width / 2)
+let player = { x: middle, y: height - 2 }
+
+const play = () => {
+  console.clear()
+
+  const enemies = generateEnemis(field, width)
+  fieldMovement(field, enemies)
+
+  const fieldWithPlayer = showPlayer(field, player)
+
+  showDeadMassege(isPlayerDead(player, field))
+  checkIfPlayerInTheArea(field, player)
+
+  console.log(fieldWithPlayer.map(row => row.join('|')).join('\n'))
+}
+
+function generateEnemis(field, width) {
+  const newRow = Array(width).fill(' ')
+  for (let i = 0; i < width; i++) {
+    if (Math.random() > 0.8) {
+      newRow[i] = chalk.green(0)
     }
-    field.push(newRow)
   }
+  return newRow
+}
+
+function fieldMovement(field, newRow) {
+  field.unshift(newRow)
+  field.pop()
   return field
 }
 
-let field = getField()
-// FIELD GENERATING FUNCTION
-
-// car-cords
-let car = { x: 2, y: 7 }
-
-// Function for enemies
-let direction = { x: 0, y: 0 }
-
-const generateEnemis = () => {
-  field.pop()
-  const newRow = []
-  for (let j = 0; j < width; j++) {
-    newRow.push(' ')
-  }
-  if (Math.random() < 0.75) {
-    const enemyIndex = randomNumber(width)
-    newRow[enemyIndex] = '0'
-  }
-  field.unshift(newRow)
-
-  const displayField = field.map(row => [...row])
-  displayField[car.y][car.x] = 'X'
-  console.log(displayField.map(row => row.join('|')).join('\n'))
+function showPlayer(field, player) {
+  const fieldCopy = field.map(row => [...row])
+  fieldCopy[player.y][player.x] = chalk.red('X')
+  return fieldCopy
 }
 
-const driving = () => {
-  console.clear()
-  car.x += direction.x
-  car.y += direction.y
-  console.log(car)
-  if (car.x < 0 || car.x >= width || car.y < 0 || car.y >= height) {
-    console.log('You crashed! Be carefull next time!')
+function isPlayerDead(player, field) {
+  const alive = field[player.y][player.x] === 0
+  return alive ? true : false
+}
+
+function showDeadMassege(boolian) {
+  if (boolian) {
+    console.log('You crashed!')
     process.exit()
   }
-  if (field[car.y][car.x] === '0') {
-    console.log('You got crashed by someones car, try to be more carefull!')
-    process.exit()
-  }
-  generateEnemis()
 }
 
 process.stdin.on('keypress', (_, key) => {
@@ -70,17 +66,16 @@ process.stdin.on('keypress', (_, key) => {
   }
   switch (key.name) {
     case 'left':
-      direction = { x: -1, y: 0 }
+      player.x -= 1
       break
     case 'right':
-      direction = { x: 1, y: 0 }
-      break
-    case 'space':
-      direction = { x: 0, y: 0 }
+      player.x += 1
       break
   }
 })
 
+setInterval(play, 400)
+
 export default () => {
-  return setInterval(driving, 400)
+  return play()
 }
