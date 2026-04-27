@@ -109,11 +109,12 @@ const play = () => {
     const word = arrayRandomElement(words);
     const wordAsArray = word.split("");
     const userAnswers = [];
+    
     return () => {
         console.log(word);
         for (let i = 0; i < 5; i++) {
             const newRow = [];
-
+            let answer = ''
             for (let j = 0; j < 5; j++) {
                 console.log(newRow.join(""));
 
@@ -122,20 +123,26 @@ const play = () => {
                 );
 
                 if (wordAsArray[j] === userLetter) {
+                    answer += userLetter
                     const green = chalk.bgGreen(userLetter);
                     newRow.push(green);
                 }
                 else if (wordAsArray.includes(userLetter)) {
+                    answer += userLetter
                     const yellow = chalk.bgYellow(userLetter);
                     newRow.push(yellow);
                 }
                 else {
+                    answer += userLetter
                     const gray = chalk.bgGray(userLetter);
                     newRow.push(gray);
                 }
+
             }
             
-
+            if (word == answer) {
+                return `You guessed the word!`
+            }
             userAnswers.push(newRow.join(""));
         }
     };
