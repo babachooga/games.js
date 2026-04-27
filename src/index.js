@@ -2,13 +2,16 @@ export const randomNumber = (range = 10) => {
   return Math.floor(Math.random() * range)
 }
 
-export const randomChars = () => {
-  const chars = [
-    't', 'V', 'r', '<', '#', 'A', 'H', 'L', '[', 'r', 'e', 'H', 'j', 'q', '{', 'z',
-    'c', 'm', 'P', '~', 'W', '<', 'u', '!', '&', '7', 'u', 'L', 'S', 'i', 'E', 'h',
-    '#', 'T', 'v', 'y', '!', 'l', '&', 'O', '+', 'Z', 'v', 'Q', 'Q', 'w', '8', '$',
-  ]
-  return chars[randomNumber(chars.length)]
+const chars = [
+  't', 'V', 'r', '<', '#', 'A', 'H', 'L', '[', 'r', 'e', 'H', 'j', 'q', '{', 'z',
+  'c', 'm', 'P', '~', 'W', '<', 'u', '!', '&', '7', 'u', 'L', 'S', 'i', 'E', 'h',
+  '#', 'T', 'v', 'y', '!', 'l', '&', 'O', '+', 'Z', 'v', 'Q', 'Q', 'w', '8', '$',
+]
+
+export function arrayRandomElement(array) {
+  const length = array.length
+  const element = array[randomNumber(length)]
+  return element
 }
 
 export function fieldGenerator(width, heigth, background) {
@@ -27,4 +30,8 @@ export function checkIfPlayerInTheArea(field, step) {
     )
     return process.exit()
   }
+}
+
+export function sortByLetters(str) {
+  return str.split('').sort().join('')
 }

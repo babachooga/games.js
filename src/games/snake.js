@@ -1,11 +1,18 @@
 import readline from 'node:readline'
-import { randomNumber, randomChars, checkIfPlayerInTheArea, fieldGenerator } from '../index.js'
+import { randomNumber, arrayRandomElement, checkIfPlayerInTheArea, fieldGenerator } from '../index.js'
 import chalk from 'chalk'
 
 readline.emitKeypressEvents(process.stdin)
 if (process.stdin.isTTY) {
   process.stdin.setRawMode(true)
 }
+
+// symbols for snake body
+const chars = [
+  't', 'V', 'r', '<', '#', 'A', 'H', 'L', '[', 'r', 'e', 'H', 'j', 'q', '{', 'z',
+  'c', 'm', 'P', '~', 'W', '<', 'u', '!', '&', '7', 'u', 'L', 'S', 'i', 'E', 'h',
+  '#', 'T', 'v', 'y', '!', 'l', '&', 'O', '+', 'Z', 'v', 'Q', 'Q', 'w', '8', '$',
+]
 
 // size of the game field, where are: height = quantity of rows in the array, width: length of rows
 let width = 9
@@ -28,7 +35,7 @@ let direction = { x: 1, y: 0 }
 // Generates snake on the field, returns field with snake on it
 function generateSnakeOnField(field, snake) {
   for (const { x, y } of snake) {
-    field[y][x] = chalk.green(randomChars())
+    field[y][x] = chalk.green(arrayRandomElement(chars))
   }
   return field
 }
