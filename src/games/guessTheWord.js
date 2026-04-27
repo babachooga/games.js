@@ -2,107 +2,13 @@ import { randomNumber, arrayRandomElement } from "../index.js";
 import chalk from "chalk";
 import readlineSync from "readline-sync";
 
-const words = [
-    "buyer",
-    "alert",
-    "stand",
-    "bases",
-    "spend",
-    "table",
-    "death",
-    "dream",
-    "basic",
-    "taken",
-    "field",
-    "alive",
-    "eight",
-    "peace",
-    "check",
-    "chief",
-    "eager",
-    "gross",
-    "plain",
-    "heavy",
-    "fraud",
-    "block",
-    "jimmy",
-    "strip",
-    "lives",
-    "count",
-    "slide",
-    "print",
-    "topic",
-    "radio",
-    "fiber",
-    "ready",
-    "again",
-    "seven",
-    "world",
-    "steam",
-    "shift",
-    "queen",
-    "quite",
-    "hence",
-    "horse",
-    "tower",
-    "teach",
-    "prove",
-    "group",
-    "strip",
-    "ahead",
-    "harry",
-    "claim",
-    "rural",
-    "scope",
-    "guess",
-    "place",
-    "enjoy",
-    "tight",
-    "other",
-    "array",
-    "given",
-    "input",
-    "coast",
-    "billy",
-    "right",
-    "cover",
-    "clean",
-    "again",
-    "lying",
-    "field",
-    "solid",
-    "dealt",
-    "audit",
-    "often",
-    "which",
-    "grown",
-    "known",
-    "laser",
-    "fresh",
-    "began",
-    "phone",
-    "dozen",
-    "abuse",
-    "quite",
-    "treat",
-    "union",
-    "solid",
-    "frank",
-    "avoid",
-    "radio",
-    "think",
-    "shape",
-    "alter",
-    "table",
-    "avoid",
-    "enjoy",
-    "trust",
-    "ratio",
-    "quick",
-    "allow",
-    "prove",
-    "bring",
-    "chest",
+const words = ["buyer","alert","stand","bases","spend","table","death","dream","basic","taken","field","alive","eight","peace",
+    "check","chief","eager","gross","plain","heavy","fraud","block","jimmy","strip","lives","count","slide",
+    "print","topic","radio","fiber","ready","again","seven","world","steam","shift","queen","quite","hence","horse",
+    "tower","teach","prove","group","strip","ahead","harry","claim","rural","scope","guess","place","enjoy","tight","other",
+    "array","given","input","coast","billy","right","cover","clean","again","lying","field","solid","dealt","audit",
+    "often","which","grown","known","laser","fresh","began","phone","dozen","abuse","quite","treat","union","solid","frank",
+    "avoid","radio","think","shape","alter","table","avoid","enjoy","trust","ratio","quick","allow","prove","bring","chest",
 ];
 
 const play = () => {
@@ -116,6 +22,9 @@ const play = () => {
             const newRow = [];
             let answer = ''
             for (let j = 0; j < 5; j++) {
+                console.clear()
+                console.log(userAnswers.join('\n'))
+                console.log('|-----------|')
                 console.log(newRow.join(""));
 
                 const userLetter = readlineSync.question(
@@ -139,15 +48,19 @@ const play = () => {
                 }
 
             }
-            
             if (word == answer) {
-                return `You guessed the word!`
+                console.log( `You guessed the word!`)
+                return 
             }
             userAnswers.push(newRow.join(""));
         }
+        console.log('You lose')
+        return 
     };
-    return "You lose";
 };
 
-const next = play();
-next();
+const startGame = play();
+
+export default () =>{
+    return startGame()
+}
