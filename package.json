@@ -22,7 +22,8 @@
   "bin": {
     "race": "bin/race.js",
     "snake": "bin/snake.js",
-    "guessWord": "bin/guessWord.js"
+    "guessWord": "bin/guessWord.js",
+    "hello": "bin/index.js"
   },
   "author": "Bron",
   "license": "ISC",

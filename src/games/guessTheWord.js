@@ -1,4 +1,4 @@
-import { randomNumber, arrayRandomElement } from "../index.js";
+import { randomNumber, arrayRandomElement, firstChar } from "../index.js";
 import chalk from "chalk";
 import readlineSync from "readline-sync";
 
@@ -17,20 +17,18 @@ const play = () => {
     const userAnswers = [];
     
     return () => {
-        console.log(word);
         for (let i = 0; i < 5; i++) {
             const newRow = [];
             let answer = ''
             for (let j = 0; j < 5; j++) {
                 console.clear()
                 console.log(userAnswers.join('\n'))
-                console.log('|-----------|')
+                console.log('-----')
                 console.log(newRow.join(""));
 
-                const userLetter = readlineSync.question(
-                    "What letter do you choose? ",
-                );
-
+                const RawAnswer = readlineSync.question("What letter do you choose? ",);
+                const userLetter = firstChar(RawAnswer)
+                
                 if (wordAsArray[j] === userLetter) {
                     answer += userLetter
                     const green = chalk.bgGreen(userLetter);
@@ -54,7 +52,7 @@ const play = () => {
             }
             userAnswers.push(newRow.join(""));
         }
-        console.log('You lose')
+        console.log(`You lose, the correct word was: ${word}`)
         return 
     };
 };

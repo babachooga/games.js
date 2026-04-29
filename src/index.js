@@ -1,3 +1,14 @@
+import chalk from "chalk"
+
+export default () => {
+  console.log('Wellcome to games.js\nThere are several games you can play:')
+  console.log(`* ${chalk.green('snake')}`)
+  console.log(`* ${chalk.green('race')}`)
+  console.log(`* ${chalk.green('guessWord')}`)
+  console.log('Type in one on those in the terminal to start playing')
+}
+
+
 export const randomNumber = (range = 10) => {
   return Math.floor(Math.random() * range)
 }
@@ -32,6 +43,9 @@ export function checkIfPlayerInTheArea(field, step) {
   }
 }
 
-export function sortByLetters(str) {
-  return str.split('').sort().join('')
+export function firstChar(str) {
+  if (str.length > 1) {
+    return str.slice(0,1)
+  }
+  return str
 }
