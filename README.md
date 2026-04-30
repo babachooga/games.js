@@ -5,7 +5,7 @@
 - type **hello** to see full info
 
 - Snake game **UPDATED!**
-- Race game
+- Race game **UPDATED!**
 - guessWord game **NEW!**
 
 ## Requirements
@@ -27,7 +27,7 @@ make install
 
 - [snake (Old version)](https://asciinema.org/a/vPduWtZizni9Lz2w)
 - [snake (New Version!)](https://asciinema.org/a/HUYheFxH3oZXr18P)
-- [race](https://asciinema.org/a/cbElCHd7IVKlMfna)
+- [race](https://asciinema.org/a/sNI0qBVG99psd6SM)
 - [guessWord](https://asciinema.org/a/1t57wt6azgQ7hnTO)
 
 ###### This repository was made by [babachooga](https://github.com/babachooga) for educational purposes.
