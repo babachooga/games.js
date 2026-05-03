@@ -1,5 +1,5 @@
 import readline from 'node:readline'
-import { randomNumber, arrayRandomElement, checkIfPlayerInTheArea, fieldGenerator } from '../index.js'
+import { randomNumber, checkIfPlayerInTheArea, fieldGenerator } from '../index.js'
 import chalk from 'chalk'
 
 readline.emitKeypressEvents(process.stdin)
@@ -35,7 +35,7 @@ let direction = { x: 1, y: 0 }
 // Generates snake on the field, returns field with snake on it
 function generateSnakeOnField(field, snake) {
   for (const { x, y } of snake) {
-    field[y][x] = chalk.green(arrayRandomElement(chars))
+    field[y][x] = chalk.green(chars[randomNumber(chars.length)])
   }
   return field
 }

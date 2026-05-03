@@ -1,3 +1,5 @@
 #!/usr/bin/env node
-import snakeGame from '../src/games/snake.js'
-snakeGame()
+import snake from '../src/games/snake.js'
+snake()
+
+export {snake}

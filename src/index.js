@@ -12,12 +12,6 @@ export const randomNumber = (range = 10) => {
   return Math.floor(Math.random() * range)
 }
 
-export function arrayRandomElement(array) {
-  const length = array.length
-  const element = array[randomNumber(length)]
-  return element
-}
-
 export function fieldGenerator(width, heigth, background) {
   const field = []
   for (let i = 0; i < heigth; i++) {
