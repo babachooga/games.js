@@ -40,7 +40,6 @@ function generateSnakeOnField(field, snake) {
   return field
 }
 
-
 const makeAStep = () => {
   console.clear()
 

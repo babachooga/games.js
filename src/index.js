@@ -1,23 +1,16 @@
-import chalk from "chalk"
+import chalk from 'chalk'
 
 export default () => {
   console.log('Wellcome to games.js\nThere are several games you can play:')
   console.log(`* ${chalk.green('snake')}`)
   console.log(`* ${chalk.green('race')}`)
-  console.log(`* ${chalk.green('guessWord')}`)
+  console.log(`* ${chalk.green('gallows')}`)
   console.log('Type in one on those in the terminal to start playing')
 }
-
 
 export const randomNumber = (range = 10) => {
   return Math.floor(Math.random() * range)
 }
-
-const chars = [
-  't', 'V', 'r', '<', '#', 'A', 'H', 'L', '[', 'r', 'e', 'H', 'j', 'q', '{', 'z',
-  'c', 'm', 'P', '~', 'W', '<', 'u', '!', '&', '7', 'u', 'L', 'S', 'i', 'E', 'h',
-  '#', 'T', 'v', 'y', '!', 'l', '&', 'O', '+', 'Z', 'v', 'Q', 'Q', 'w', '8', '$',
-]
 
 export function arrayRandomElement(array) {
   const length = array.length
@@ -41,11 +34,4 @@ export function checkIfPlayerInTheArea(field, step) {
     )
     return process.exit()
   }
-}
-
-export function firstChar(str) {
-  if (str.length > 1) {
-    return str.slice(0,1)
-  }
-  return str
 }
